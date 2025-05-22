@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern CSS Features Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+
+    h2 {
+      border-bottom: 1px solid #ccc;
+      margin-top: 2rem;
+    }
+
+    /* 1. Animation */
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(200px); }
+    }
+    .animated-box {
+      width: 100px;
+      height: 100px;
+      background: tomato;
+      animation: slide 2s infinite alternate;
+    }
+
+    /* 2. Toggle */
+    .toggle-content {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    #toggle:checked + label + .toggle-content {
+      display: block;
+    }
+
+    /* 3. Counter */
+    ol.counter-list {
+      counter-reset: my-counter;
+    }
+    ol.counter-list li::before {
+      counter-increment: my-counter;
+      content: counter(my-counter) ". ";
+      font-weight: bold;
+    }
+
+    /* 4. Accordion */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    #accordion-toggle:checked + label + .accordion-content {
+      max-height: 100px;
+    }
+
+    /* 5. Transition */
+    .transition-button {
+      background: steelblue;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+    .transition-button:hover {
+      background: darkblue;
+    }
+
+    /* 6. :has() logic */
+    .wrapper:has(#has-toggle:checked) p {
+      display: block;
+    }
+    .wrapper p {
+      display: none;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Modern CSS Feature Showcase</h1>
+
+  <h2>1. Animation</h2>
+  <div class="animated-box"></div>
+
+  <h2>2. Toggle Without JavaScript</h2>
+  <input type="checkbox" id="toggle" hidden>
+  <label for="toggle">Click to toggle content</label>
+  <div class="toggle-content">
+    <p>This content is toggled using only CSS.</p>
+  </div>
+
+  <h2>3. CSS Counter</h2>
+  <ol class="counter-list">
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Cherries</li>
+  </ol>
+
+  <h2>4. Accordion (Custom)</h2>
+  <input type="checkbox" id="accordion-toggle" hidden>
+  <label for="accordion-toggle">Open Accordion</label>
+  <div class="accordion-content">
+    <p>This content expands using only CSS transitions.</p>
+  </div>
+
+  <h2>4b. Accordion (Native)</h2>
+  <details>
+    <summary>Click to expand</summary>
+    <p>This is the hidden accordion content.</p>
+  </details>
+
+  <h2>5. Button with Transition</h2>
+  <button class="transition-button">Hover Me</button>
+
+  <h2>6. Logic with <code>:has()</code> (Only in Chrome/Safari)</h2>
+  <div class="wrapper">
+    <input type="checkbox" id="has-toggle">
+    <label for="has-toggle">Check me</label>
+    <p>This paragraph shows only when the box is checked.</p>
+  </div>
+
+</body>
+</html>
